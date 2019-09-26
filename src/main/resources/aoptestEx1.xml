@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+	<bean id="adviceLog" class="com.aoptest.ex1.AdviceLog"/>
+	<!-- aspect: (핵심기능+공통관심사)를 어떻게 합칠것인가 ?에 대한...
+		 aspect는 adviceLog를 참조하고 id는 prof
+		 com.aoptest.ex01의 모든것(*)을 pointCut으로 지정
+		 Advice
+			<aop:before> : 핵심기능이 실행 되기 전 advice 실행한다.
+			<aop:after-returning> : 정상적으로 핵심기능 실행 후에 advice 실행
+			<aop:after-throwing> : 핵심기능 실행 중에 exception이 발생 시 advice 실행
+			<aop:after> : 핵심기능 실행 후에 advice를 실행한다.(exception이 발생하더라도..)
+			<aop:around> : 핵심기능 실행 전/후 및 exception 발생시 advice 실행
+	-->
+	<aop:config>
+		<aop:aspect id="prof" ref="adviceLog">
+			<aop:pointcut id="pcMethod" expression="within(com.aoptest.ex1.*)"/>
+			<aop:around pointcut-ref ="pcMethod" method="profile"/>
+		</aop:aspect>
+	</aop:config>
+
+	<bean id="student" class="com.aoptest.ex1.Student">
+		<property name="name" value="홍길동"/>
+		<property name="nonum" value="20190925"/>
+		<property name="age" value="18"/>
+		<property name="grade" value="2학년"/>
+	</bean>
+
+	<bean id="staff" class="com.aoptest.ex1.Staff">
+		<property name="name" value="문재인"/>
+		<property name="age" value="41"/>
+		<property name="dept" value="청와대"/>
+	</bean>
+
+</beans>
