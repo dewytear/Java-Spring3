@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="stu" class="com.aoptest.ex1.Student">
+	<bean id="student" class="com.aoptest.ex1.Student">
 		<property name="name" value="홍길동"/>
 		<property name="nonum" value="20190925"/>
 		<property name="age" value="18"/>
