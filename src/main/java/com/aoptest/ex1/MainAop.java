@@ -10,7 +10,7 @@ public class MainAop {
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext("classpath:aoptestEx1.xml");
 
 		Student student = ctx.getBean("student", Student.class);
-		student.getInfo();	//getInfo()가 JointPoint가 된다.
+		student.getInfo();	//getInfo()가 JointPoint가 된다
 
 		Staff staff = ctx.getBean("staff", Staff.class);
 		staff.getInfo();
