@@ -12,24 +12,24 @@ public class AdviceLog {
 
 //	@Pointcut("within(com.aoptest.ex4.*)")
 //	@Pointcut("execution(* com.aoptest.ex4.*.*())")
-	@Pointcut("bean(student)")
+	@Pointcut("bean(student)")	//Pointcutë¥¼ studentë§Œ ì§€ì •í–ˆê¸°ë–„ë¬¸ì— staffëŠ” aopì‘ë™ë˜ì§€ ì•ŠëŠ”ë‹¤.
 	private void pointCutMethod() {}
 
 	@Around("pointCutMethod()")
-	//ProceedingJointPoint °´Ã¼´Â ¿ø·¡ ½ÇÇàµÇ¾î¾ß ÇÒ ´ë»ó ¸Ş¼Òµå(ÇÙ½É±â´É)
+	//ProceedingJointPoint ê°ì²´ëŠ” ì›ë˜ ì‹¤í–‰ë˜ì–´ì•¼ í•  ëŒ€ìƒ ë©”ì†Œë“œ(í•µì‹¬ê¸°ëŠ¥)
 	public Object profile(ProceedingJoinPoint jointPoint) throws Throwable{
-		String signStr = jointPoint.getSignature().toShortString();	//ÇÙ½É±â´ÉÀÇ ¸Ş¼Òµå¸í
+		String signStr = jointPoint.getSignature().toShortString();	//í•µì‹¬ê¸°ëŠ¥ì˜ ë©”ì†Œë“œëª…
 
 		System.out.println(signStr + " is start!!");
-		long startTime = System.currentTimeMillis();	//ÇöÀç½Ã°£À» ¾ò¾î¿È
+		long startTime = System.currentTimeMillis();	//í˜„ì¬ì‹œê°„ì„ ì–»ì–´ì˜´
 
 		try {
-			Object obj = jointPoint.proceed();	//ÇÙ½É±â´ÉÀ» ½ÇÇà
+			Object obj = jointPoint.proceed();	//í•µì‹¬ê¸°ëŠ¥ì„ ì‹¤í–‰
 			return obj;
 		}finally {
-			long endTime = System.currentTimeMillis();	//ÇöÀçÁ¾·á½Ã°£À» ¾ò¾î¿È
+			long endTime = System.currentTimeMillis();	//í˜„ì¬ì¢…ë£Œì‹œê°„ì„ ì–»ì–´ì˜´
 			System.out.println(signStr + " is finished!!");
-			System.out.println(signStr + " °æ°ú½Ã°£: " + (endTime - startTime));
+			System.out.println(signStr + " ê²½ê³¼ì‹œê°„: " + (endTime - startTime));
 		}
 	}
 
